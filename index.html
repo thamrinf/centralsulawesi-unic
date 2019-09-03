@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Central Sulawesi Projects - UNIC</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+	
+
+   <style>
+		html, body {
+			height: 100%;
+			margin: 'centre';
+		}
+		#map { width: 90%; height: 70%;}
+	.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+	.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+	.imagepopup{
+		width: 750px;
+		height:auto;
+	}
+	</style>
+
+
+</head>
+<body>
+
+	<!-- HEADER -->
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h3 class="my-0 mr-md-auto font-weight-bold" style="padding-left: 20px">Central Sulawesi Projects</h3>
+	</div>
+    <!-- END HEADER -->
+	
+	<!-- START Page Content -->
+    <div class="container-fluid" id='maincontainer'>
+	    	<div class="col-md-12 apanel">
+	    		<div class="row">
+	    			<div class="col-md-12">
+	    				<div id='region_div'></div>
+	    			</div>
+	    		</div>	
+	    	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" style="color: grey; padding-top: 10px; padding-left: 60px; padding-right: 5px; margin-bottom: 0px">
+			<h6>Total seluruh Indonesia (xx Agustus 2019)</h6>
+		</div>
+	</div>
+	<div class="row">
+    	<div class="col-md-3" style="font-size: 17px; color: grey; padding-top: 20px; padding-left: 30px; padding-right: 5px">
+    		<div class='media'>
+                <div class="media-left boximg" style="">
+                    <center><img src="images/titik_panas.svg" class="img-responsive" style='width: 6rem; padding-left: 30px'></center>
+                </div>
+                <div class="media-body">
+                    <h2 class="thevaluedata" id="kfa1" style="margin-top: 1px; padding-left: 20px; margin-bottom: 1px">-</h2>
+                    <p style='font-size: 12px; padding-left: 20px'>Titik Panas (Hotspot)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="font-size: 17px; color: grey; padding-top: 20px; padding-left: 30px; padding-right: 5px">
+    		<div class='media'>
+                <div class="media-left boximg" style="">
+                    <center><img src="images/heli.svg" class="img-responsive" style='width: 6rem'></center>
+                </div>
+                <div class="media-body">
+                    <h2 class="thevaluedata" id="kfa2" style="margin-top: 1px; padding-left: 15px; margin-bottom: 1px">-</h2>
+                    <p style='font-size: 12px; padding-left: 15px'>Heli (28 WB + 8 Patroli)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="font-size: 17px; color: grey; padding-top: 20px; padding-left: 15px; padding-right: 5px">
+    		<div class='media'>
+                <div class="media-left boximg" style="">
+                    <center><img src="images/personnel.svg" class="img-responsive" style='width: 4rem'></center>
+                </div>
+                <div class="media-body">
+                    <h2 class="thevaluedata" id="kfa3" style="margin-top: 1px; padding-left: 20px; margin-bottom: 1px">-</h2>
+                    <p style='font-size: 12px; padding-left: 20px'>Personil</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="font-size: 17px; color: grey; padding-top: 10px; padding-left: 15px">
+	        <div style="font-size: 12px; padding-right: 30px; padding-top: 10px">
+	        	<table style="float: right;">
+	        		<tr>
+	        			<td></td>
+	        			<td>
+	        				<a target="_blank" href="http://https://bnpb.go.id/">
+		                		<img style="height: 60px; padding-right: 15px" class="img-responsive hdx" src='images/BNPB-logo.png'>
+		                	</a>
+	        			</td>
+	        		</tr>
+	        	</table>
+	        </div>
+	    </div>
+    </div>
+
+    <!-- JAVASCRIPT LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+
+
+
+
+	<script type="text/javascript">
+		// $(document).ready(function()
+
+    		// INITIAL VARIABLE
+    		var thedata,
+    			theDataTableInit =0,
+    			human_number = d3.format(",d");
+    			SelectedRegion = 'provinsi',
+    			statesData = 0,
+    			locationCount=[],
+    			zero = 0;
+
+
+			var geojson;
+			var map = L.map('region_div').setView([-2.49599765, 120.20016564535808], 5);
+			var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+				minZoom: 5,
+				maxZoom: 15,
+				attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+			});
+	
+			Esri_WorldTopoMap.addTo(map);
+
+			function drawregiondiv(){
+				// control that shows state info on hover
+				var info = L.control();
+
+				info.onAdd = function (map) {
+					this._div = L.DomUtil.create('div', 'info');
+					this.update();
+					return this._div;
+				};
+
+				info.update = function (props) {
+					
+					this._div.innerHTML = '<h5>Data Provinsi</h5>' +  (props ?
+						'<b>' + props.ADM1_EN + '</b><br />' + locationCount[props.ADM1_EN][0] + ' Titik Panas<br/>' + locationCount[props.ADM1_EN][1] + ' ada asap<br/>' + locationCount[props.ADM1_EN][2] + ' Kualitas Udara</br>' + locationCount[props.ADM1_EN][3] + '<br/>' + locationCount[props.ADM1_EN][4] + ' Personil</br>'
+						: 'Hover over a state');
+				};
+
+				info.addTo(map);
+
+				// get color depending on population density value
+				function getColor(d) {
+					return 	d > 200 ? '#E86D00' :
+							d > 100  ? '#FF8317' :
+							d > 50  ? '#FF9C45' :
+							d > 10  ? '#FFB473' :
+							d < 5  ? '#FFCDA2' :
+										'transparent';
+				}
+
+				function style(feature) {
+					return {
+						weight: 1,
+						opacity: 1,
+						color: 'grey',
+						dashArray: '1',
+						fillOpacity: 0.7,
+						fillColor: getColor(locationCount[feature.properties.ADM1_EN][0]) 
+					};
+				}
+
+				function highlightFeature(e) {
+					var layer = e.target;
+
+					layer.setStyle({
+						weight: 5,
+						color: '#666',
+						dashArray: '',
+						fillOpacity: 0.7
+					});
+
+					if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+						layer.bringToFront();
+					}
+
+					info.update(layer.feature.properties);
+				}
+
+
+				function resetHighlight(e) {
+					geojson.resetStyle(e.target);
+					info.update();
+				}
+
+				function zoomToFeature(e) {
+					// map.fitBounds(e.target.getBounds());
+					let ADM1_EN = e.target.feature.properties.ADM1_EN;
+					let select = ADM1_EN.replace(' ','-');
+					$('#regionselect option').removeAttr('selected').filter('[value=' + select + ']').attr('selected', true);
+					redrawvis(ADM1_EN);
+				}
+
+				function onEachFeature(feature, layer) {
+					layer.on({
+						mouseover: highlightFeature,
+						mouseout: resetHighlight,
+						click: zoomToFeature
+					});
+				}
+
+				geojson = L.geoJson(statesData, {
+					style: style,
+					onEachFeature: onEachFeature
+				}).addTo(map);
+
+				var legend = L.control({position: 'bottomright'});
+
+				legend.onAdd = function (map) {
+
+					var div = L.DomUtil.create('div', 'info legend'),
+						grades = [5, 10, 50, 100, 200],
+						labels = [],
+						from, to;
+
+					for (var i = 0; i < grades.length; i++) {
+						from = grades[i];
+						to = grades[i + 1];
+
+						labels.push(
+							'<i style="background:' + getColor(from + 1) + '"></i> ' +
+							from + (to ? '&ndash;' + to : '+'));
+					}
+
+					div.innerHTML = labels.join('<br>');
+					return div;
+				};
+
+				legend.addTo(map);
+
+			}
+
+			// function drawinit(){
+	  //   		orgtotal=[];
+	  //   		thedata.forEach(function(d){
+	  //   			let tempat = d['provinsi'];
+   //  				locationCount[tempat] = [d['titik_panas'],d['asap'],d['kualitas_udara'],d['Heli'],d['Personil']];
+   //  				let select = tempat.replace(' ','-');
+   //  				$('#regionselect').append('<option value="'+select+'">'+tempat+'</option>');
+	  //   			// console.log(locationCount[tempat]);
+		 //    	});
+		 //    	drawregiondiv();
+	  //   	}
+
+	    	d3.json('IDN-admin12014-resize2.json',function(jso){
+	    		statesData = jso;
+	    		//call the original data
+	    		d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vSyHoYuQV-_pd1obHMG1Ti5PmO51firoGYFYGSyK8JLirBcc98eugBYRctLHGoHX7OxmWEdzlU34Djq/pub?output=csv',function(data){
+		    		//set the data called to variable thedata
+		    		// console.log(data);
+		    		thedata = data;
+
+		    		drawinit();
+
+		    	})	 
+
+			});
+
+			// function drawboundaries(){
+	  //   		d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vSyHoYuQV-_pd1obHMG1Ti5PmO51firoGYFYGSyK8JLirBcc98eugBYRctLHGoHX7OxmWEdzlU34Djq/pub?output=csv',function(data){
+	  //   			data.forEach(function(d,i){
+	  //   				var circle = L.marker([d['Lat'],d['Long']],{
+			// 				className:'test'
+			// 			}).addTo(map).bindPopup('<div class="imagepopup"></div>').on('click',function(){
+			// 				$('.imagepopup').html(d.description);
+			// 			});
+
+	  //   			})
+
+	  //   		drawboundaries();
+
+	  //   		})
+	  //   	}
+
+	    	function initdraw(){
+	    		// KEY FEATURE------------------------------------
+
+				// d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vSEa_bhCBMRwUNPI_E0SKsHG23XaYEpCzZ_C0Uw5rbmAb_X_lrtyis_zlaXqssR6abVp0ytkFXrCanh/pub?output=csv',function(data){
+				// 	let numberformat = d3.format(",d");
+				// 	let i = 1;
+				// 	for(x in data[0]){
+				// 		$('#kft'+i).html(x);
+				// 		$('#kf'+i).html(numberformat(data[0][x]));
+				// 		$('#kfa'+i).html(numberformat(data[0][x]));
+				// 		i+=1;
+				// 	}
+				// 	// console.log(data);
+
+				// })
+			}
+
+			function getrandom(min,max){
+				return parseFloat((Math.random() * (max - min) + min).toFixed(4));
+			}
+				// d3.csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vSyHoYuQV-_pd1obHMG1Ti5PmO51firoGYFYGSyK8JLirBcc98eugBYRctLHGoHX7OxmWEdzlU34Djq/pub?output=csv',function(thedata){
+			
+			d3.csv('data.csv',function(thedata){
+				thedata.forEach(function(d,i){
+					let lat = parseFloat(d['Lat']);
+					let lon = parseFloat(d['Long']);
+						lat = lat+getrandom(0.0099,-0.0099);
+						lon = lon+getrandom(0.0099,-0.0099);
+						// console.log(lat,getrandom(0.0099,-0.0099))
+    				L.marker([lat,lon],{
+    					// radius:2, //besaran linkaran
+    					// className: 'circleIATI',
+    					// weight:1, //tebal garis pinggir
+    					// color: 'red', //warna garis pinggir
+    					// fillColor: 'red', //warna dalam
+    					// opacity:1, //opacity garis pinggir
+    					// fillOpacity:0.8 //opacity warna dalam
+
+    				}).addTo(map).bindPopup('<b>Agency</b>: '+d['Agency']+'<br/><b>Name of Project</b>: '+d['Name of Project']+'<br/><b>District</b>: '+d['District']+'<br/><b>Partner</b>: '+d['Partner']+'<br/><b>Objective</b>: '+d['Objective']+'<br/><b>Summary</b>: '+d['Summary']);
+    			})
+    			initdraw();
+
+			})
+
+
+	</script>
+
+</body>
+</html>
